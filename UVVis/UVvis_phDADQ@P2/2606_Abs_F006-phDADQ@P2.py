@@ -296,13 +296,89 @@ if(0==1):
 
 
 
+
+
+def SubtractSpectra(s1, s2, name="subtracted"):
+    """
+    Returns s1 - s2 as a new spectrum object.
+    Assumes identical X grids.
+    """
+
+    if not np.allclose(s1.X, s2.X):
+        raise ValueError("X grids are not identical. Use interpolation version.")
+
+    new_s = copy.deepcopy(s1)
+    
+    new_s.Y = (np.array(s1.Y) - np.array(s2.Y)).tolist()
+    new_s.N = name
+
+    return new_s
+
+
+def RemoveConstantBG(spectra_input, x1, x2, mode="min"):
+    """
+    Removes a constant background per spectrum using a selected x-range.
+
+    Parameters
+    ----------
+    spectra_input : list or single spectrum
+    x1, x2 : float
+        wavelength range used to estimate background
+    mode : str
+        "min"  -> subtract minimum in range (default, robust for dips)
+        "mean" -> subtract mean in range
+        "p5"   -> subtract 5th percentile (robust option)
+
+    Returns
+    -------
+    list of corrected spectra
+    """
+
+    if not isinstance(spectra_input, list):
+        spectra_input = [spectra_input]
+
+    corrected_list = []
+
+    for s in spectra_input:
+        s_copy = copy.deepcopy(s)
+
+        X = np.array(s_copy.X)
+        Y = np.array(s_copy.Y)
+
+        mask = (X >= x1) & (X <= x2)
+
+        if not np.any(mask):
+            print(f"Warning: no BG region for {s.N}")
+            continue
+
+        Y_bg = Y[mask]
+
+        if mode == "min":
+            bg = np.min(Y_bg)
+        elif mode == "mean":
+            bg = np.mean(Y_bg)
+        elif mode == "p5":
+            bg = np.percentile(Y_bg, 5)
+        else:
+            raise ValueError("mode must be 'min', 'mean', or 'p5'")
+
+        Y_corrected = Y - bg
+
+        s_copy.Y = Y_corrected.tolist()
+        s_copy.N = s_copy.N + "_bgcorr"
+
+        corrected_list.append(s_copy)
+
+    return corrected_list
+
+
+
 selected_spectra = [spectra_dict[name] for name in selected_names]
-selected_spectra = TrimSpectra(selected_spectra, 220, 1000)
-selected_spectra = Normalize(selected_spectra, 220, 1000, mode="M")
-PlotSpectra(selected_spectra, 'WE')
+selected_spectra = TrimSpectra(selected_spectra, 220, 1100)
+selected_spectra = Normalize(selected_spectra, 620, 840, mode="I")
+selected_spectra = RemoveConstantBG(selected_spectra, 620, 840)
 
+s_sub = SubtractSpectra(selected_spectra[0], selected_spectra[1], name="SubstractedSpec")
 
-
-
-
+PlotSpectra([selected_spectra[0], selected_spectra[1], s_sub], 'WE')
 
