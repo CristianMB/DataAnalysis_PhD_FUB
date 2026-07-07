@@ -238,7 +238,7 @@ for name in sorted(spectra_dict.keys()):
 # === SELECT ====
 
 selected_names = [
-    #'phDADQ_DMF_LowCon_d20',
+    'phDADQ_DMF_LowCon_d20',
     #'phDADQ_DMF_Sat_d20',
     #'phDADQ_DMF_Sat_d30',
     
@@ -378,7 +378,7 @@ selected_spectra = TrimSpectra(selected_spectra, 220, 1100)
 selected_spectra = Normalize(selected_spectra, 620, 840, mode="I")
 selected_spectra = RemoveConstantBG(selected_spectra, 620, 840)
 
-s_sub = SubtractSpectra(selected_spectra[0], selected_spectra[1], name="SubstractedSpec")
+s_sub = SubtractSpectra(selected_spectra[1], selected_spectra[2], name="SubstractedSpec")
 
-PlotSpectra([selected_spectra[0], selected_spectra[1], s_sub], 'WE')
+PlotSpectra([selected_spectra[1], selected_spectra[2], s_sub], 'WE')
 

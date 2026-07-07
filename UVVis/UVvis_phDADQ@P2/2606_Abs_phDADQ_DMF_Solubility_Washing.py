@@ -16,6 +16,8 @@ from spectra.io import load_absorption_csv  # now Python can find it
 data_folders = [
     r'H:\FUBerlin\Measurements\UVVis\CristianB\20260513_phDADQ_DMF',
     r'H:\FUBerlin\Measurements\UVVis\CristianB\20260528_F006_phDADQ@P2_DMF_WashingSteps',
+    r'H:\FUBerlin\Measurements\UVVis\CristianB\20260618_QuickCheckCuvettes',
+    r'H:\FUBerlin\Measurements\UVVis\CristianB\20260618_phDADQ_DMF_dilutionsNoBL'
 
 ]
 
@@ -237,13 +239,22 @@ for name in sorted(spectra_dict.keys()):
 # === SELECT ====
 
 selected_names = [
-    'phDADQ_DMF_LowCon_d20',
+    #'phDADQ_DMF_LowCon_d20',
     #'phDADQ_DMF_Sat_d20',
     #'phDADQ_DMF_Sat_d30',
-    
-    'F006_R0_d20',
-    'F006_R1_d20',
-    'F006_R2_d20'
+
+    'phDADQ_DMF_70',
+
+#OriginalWashing    
+  #  'F006_R0_d20',
+  #  'F006_R1_d20',
+  #  'F006_R2_d20'
+
+#AfterCoupleOfWeeks
+    #'0_noBL',
+    #'1_noBL',
+    '0_unnumberedBL',
+    '1_unnumberedBL',
 ]
 
 
