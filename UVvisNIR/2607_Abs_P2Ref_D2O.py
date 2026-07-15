@@ -68,8 +68,8 @@ plt.tight_layout()
 plt.show()
 
 
-spec1 = txt_spectra["Absorption_P2_150726.txt"]
-spec2 = txt_spectra["Baseline_150726.txt"]
+spec1 = txt_spectra["Absorption_P2_Full_150726.txt"]
+spec2 = txt_spectra["BaselineFull_150726.txt"]
 
 subtracted = pd.DataFrame()
 
@@ -84,8 +84,7 @@ plt.figure(figsize=(6,5))
 plt.plot(
     subtracted["Wavelength"],
     subtracted["Abs"],
-    label="Sample1 - Sample2"
-)
+    label="Sample1 - Sample2", linewidth=1)
 
 plt.xlabel("Wavelength (nm)")
 plt.ylabel("Δ Absorbance")
