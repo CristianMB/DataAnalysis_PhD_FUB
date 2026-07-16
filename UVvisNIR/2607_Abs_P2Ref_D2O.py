@@ -5,7 +5,7 @@ import numpy as np
 
 # === TXT DATA FOLDER ===
 
-txt_folder = r'H:\FUBerlin\Measurements\UVvisNIR\20260715_P2D2O_Test'
+txt_folder = r'H:\FUBerlin\Measurements\UVvisNIR\CristianB\20260715_P2D2O_Test'
 
 
 
