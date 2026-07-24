@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # FILE
 # =========================
 
-filename = r"H:\FUBerlin\Measurements\TGA_TUB\HiPCo-1_AIR_800_1.txt"
+filename = r"H:\FUBerlin\Measurements\TGA_TUB\20260715_TGA_NoPo_AirOx\HiPCo-1_AIR_800_1.txt"
 
 
 # =========================
