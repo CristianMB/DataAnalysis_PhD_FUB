@@ -16,6 +16,8 @@ import numpy as np
 #txt_folder = r"H:\FUBerlin\Measurements\UVvisNIR\Alphonse\20230713"
 
 
+txt_folder = r"H:\FUBerlin\Measurements\UVvisNIR\CristianB\All"
+
 # === LOAD ALL TXT FILES ===
 
 
@@ -99,4 +101,3 @@ plt.grid(True)
 plt.legend(fontsize=8)
 plt.tight_layout()
 plt.show()
-
