@@ -14,7 +14,7 @@ from spectra.io import load_absorption_csv  # now Python can find it
 
 
 data_folders = [
-    r'H:\FUBerlin\Measurements\UVVis\CristianB\20260729_D2OSamples_F001_F007_Refs',
+    r'H:\FUBerlin\Measurements\UVVis\CristianB\20260731_DGU_D2OBased_P2_F005LP_F006_F007',
 
 ]
 
@@ -230,26 +230,33 @@ def PlotSpectra(
 print("\nAvailable spectra:\n")
 
 for name in sorted(spectra_dict.keys()):
-    print(name)
+    print(f'"{name}"', ',')
 
 # === SELECT ====
 
 selected_names = [
-#'P2_d1',
-'P2_d5',
 
-'CBS7CF_d3',
-#'DMF@P2_d1',
-#'F001_d1',
-#'F002_d1',
-#'F003_d1',
-#'F004_d1',
-#'F005LP_d1',
-#'F005LP_d5',
-#'F006_d1',
-#'F006_d5',
-#'F007_d1',
-#'F007_d5',
+
+    #"20260731_P2_DGU_B_d1" ,
+    #"20260731_F005LP_6FBz@P2_DGU_B_d1" ,
+    #"20260731_F006WA_phDADQ@P2_DGU_B_d1" ,
+    #"20260731_F007WA_1BrC18@P2_DGU_B_d1" ,
+    
+    "20260731_P2_DGU_C_d1" ,
+    "20260731_F005LP_6FBz@P2_DGU_C_d1" ,
+    "20260731_F006WA_phDADQ@P2_DGU_C_d1" ,
+    "20260731_F007WA_1BrC18@P2_DGU_C_d1" ,
+
+    #"20260731_P2_DGU_D_d1" ,
+    #"20260731_F005LP_6FBz@P2_DGU_D_d1" ,
+    #"20260731_F006WA_phDADQ@P2_DGU_D_d1" ,
+    #"20260731_F007WA_1BrC18@P2_DGU_D_d1" ,
+
+    #"20260731_P2_DGU_D_d4" ,
+    #"20260731_F005LP_6FBz@P2_DGU_D_d4" , 
+    #"20260731_F006WA_phDADQ@P2_DGU_D_d4" , 
+    #"20260731_F007WA_1BrC18@P2_DGU_D_d4" ,
+
 ]
 
 
@@ -308,9 +315,10 @@ if(0==1):
 
 
 selected_spectra = [spectra_dict[name] for name in selected_names]
-selected_spectra = TrimSpectra(selected_spectra, 200, 1100)
-selected_spectra = Normalize(selected_spectra, 600, 700, mode="M")
-PlotSpectra(selected_spectra, 'WE')
+selected_spectra = TrimSpectra(selected_spectra, 360, 1100)
+selected_spectra = Normalize(selected_spectra, 600, 800, mode="I")
+#selected_spectra = Normalize(selected_spectra, 450, 475, mode="M")
+PlotSpectra(selected_spectra, 'WE', offset_step=0.0)
 
 
 
