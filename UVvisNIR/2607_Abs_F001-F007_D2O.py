@@ -361,9 +361,9 @@ spectra_to_plot = [
   
   
     ############ P2 vs F6 and DMF
-    "20260728_RefP2_DOCD2O_d3.txt",
-    "20260728_F006_phDADQ@P2_DOCD2O_d3.txt",
-    "20260728_RefDMF_DMF@P2_DOCD2O_d2.txt",
+    #"20260728_RefP2_DOCD2O_d3.txt",
+    #"20260728_F006_phDADQ@P2_DOCD2O_d3.txt",
+    #"20260728_RefDMF_DMF@P2_DOCD2O_d2.txt",
 
     ############ P2 vs Fluorobenzenes
     #"20260728_RefP2_DOCD2O_d3.txt",
@@ -372,10 +372,10 @@ spectra_to_plot = [
     #"20260728_F005LP_6FBz@P2_DOCD2O_d3.txt",
 
     ############ P2 vs Fluoroalcohols
-    #"20260728_RefP2_DOCD2O_d3.txt",
+    "20260728_RefP2_DOCD2O_d3.txt",
     #"20260728_F003_TFE@P2_DOCD2O_d2.txt",
-    #"20260728_F003_TFE@P2_DOCD2O_d3.txt",
-    #"20260728_F004_6FIPA@P2_DOCD2O_d1.txt",
+    "20260728_F003_TFE@P2_DOCD2O_d3.txt",
+    "20260728_F004_6FIPA@P2_DOCD2O_d1.txt",
     
 
 
@@ -402,7 +402,7 @@ normalized_spectra = NormalizeSpectra(corrected_spectra,xmin=600,xmax=700,mode="
 PlotSpectra(
     normalized_spectra,
     spectra_to_plot,
-    offset_step=0.2,
+    offset_step=0.0,
     xmin=200,
     xmax=2400,
     ylabel="Normalized Δ Absorbance"
