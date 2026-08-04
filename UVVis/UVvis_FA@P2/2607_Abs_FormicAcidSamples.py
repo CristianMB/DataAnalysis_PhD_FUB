@@ -14,8 +14,7 @@ from spectra.io import load_absorption_csv  # now Python can find it
 
 
 data_folders = [
-    r'H:\FUBerlin\Measurements\UVVis\CristianB\20260731_DGU_D2OBased_P2_F005LP_F006_F007',
-    r'H:\FUBerlin\Measurements\UVVis\CristianB\20260803_PostDial_P2_F005LP_F006_F007',
+    r"H:\FUBerlin\Measurements\UVVis\CristianB\20260730_FormicAcidSamples_AM1_AM4",
 ]
 
 # === LOAD ALL CSV FILES IN THE FOLDERS ===
@@ -230,45 +229,16 @@ def PlotSpectra(
 print("\nAvailable spectra:\n")
 
 for name in sorted(spectra_dict.keys()):
-    print(f'"{name}"', ',')
+    print(name)
 
 # === SELECT ====
 
 selected_names = [
-
-
-    #"20260731_P2_DGU_B_d1" ,
-    #"20260731_F005LP_6FBz@P2_DGU_B_d1" ,
-    #"20260731_F006WA_phDADQ@P2_DGU_B_d1" ,
-    #"20260731_F007WA_1BrC18@P2_DGU_B_d1" ,
-    
-    #"20260731_P2_DGU_C_d1" ,
-    #"20260731_F005LP_6FBz@P2_DGU_C_d1" ,
-    #"20260731_F006WA_phDADQ@P2_DGU_C_d1" ,
-    #"20260731_F007WA_1BrC18@P2_DGU_C_d1" ,
-
-    #"20260731_P2_DGU_D_d1" ,
-    #"20260731_F005LP_6FBz@P2_DGU_D_d1" ,
-    #"20260731_F006WA_phDADQ@P2_DGU_D_d1" ,
-    #"20260731_F007WA_1BrC18@P2_DGU_D_d1" ,
-
-    #"20260731_P2_DGU_D_d4" ,
-    #"20260731_F005LP_6FBz@P2_DGU_D_d4" , 
-    #"20260731_F006WA_phDADQ@P2_DGU_D_d4" , 
-    #"20260731_F007WA_1BrC18@P2_DGU_D_d4" ,
-
-
-    "20260731_P2_DGU_B_d1" ,
-#    "20260803_P2_DGUdial" ,
-
-    "20260731_F007WA_1BrC18@P2_DGU_B_d1" ,
-#    "20260803_F007WA_1BrC18@P2_DGUdial" ,
-
-    "20260731_F005LP_6FBz@P2_DGU_B_d1" ,
-#    "20260803_F005LP_6FBz@P2_DGUdial" ,
-
-    "20260731_F006WA_phDADQ@P2_DGU_B_d1" ,
-#    "20260803_F006WA_phDADQ@P2_DGUdial" ,
+"20260730_AM1_FA@NoPo_WA_BS_d1",
+"20260730_AM2_FA+H2O@NoPo_WA_BS_d1",
+"20260730_AM3_FA@NoPo_WA_TS_d1",
+"20260730_AM4_FA+H2O@NoPo_WA_TS_d1",
+#"20260730_RefNoPo_NoSon_d1_refPLE",
 ]
 
 
@@ -328,9 +298,8 @@ if(0==1):
 
 selected_spectra = [spectra_dict[name] for name in selected_names]
 selected_spectra = TrimSpectra(selected_spectra, 200, 1100)
-#selected_spectra = Normalize(selected_spectra, 600, 800, mode="M")
-#selected_spectra = Normalize(selected_spectra, 450, 475, mode="M")
-PlotSpectra(selected_spectra, 'WE', offset_step=0.0)
+selected_spectra = Normalize(selected_spectra, 600, 700, mode="M")
+PlotSpectra(selected_spectra, 'WE')
 
 
 
