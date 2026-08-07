@@ -16,7 +16,7 @@ import numpy as np
 #txt_folder = r"H:\FUBerlin\Measurements\UVvisNIR\Alphonse\20230713"
 
 
-txt_folder = r"H:\FUBerlin\Measurements\UVvisNIR\CristianB\All"
+#txt_folder = r"H:\FUBerlin\Measurements\UVvisNIR\CristianB\All"
 
 # === LOAD ALL TXT FILES ===
 
