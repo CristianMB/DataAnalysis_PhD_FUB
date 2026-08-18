@@ -5,11 +5,13 @@ import numpy as np
 
 
 # ==========================
-# TXT DATA FOLDER
+# TXT DATA FOLDERS
 # ==========================
 
-txt_folder = r"H:\FUBerlin\Measurements\UVvisNIR\CristianB\20260810_DGUdial_P2_F005_F006_F007"
-
+txt_folders = [
+    r"H:\FUBerlin\Measurements\UVvisNIR\CristianB\20260810_DGUdial_P2_F005_F006_F007",
+    r"H:\FUBerlin\Measurements\UVvisNIR\CristianB\20260817_DGUdial_P2_F005_F006_F007_ProperResolution",
+]
 
 
 # ==========================
@@ -19,11 +21,22 @@ txt_folder = r"H:\FUBerlin\Measurements\UVvisNIR\CristianB\20260810_DGUdial_P2_F
 txt_spectra = {}
 
 
-for file in os.listdir(txt_folder):
+for txt_folder in txt_folders:
 
-    if file.lower().endswith(".txt"):
+    print("\nReading folder:")
+    print(txt_folder)
 
-        path = os.path.join(txt_folder, file)
+    for file in os.listdir(txt_folder):
+
+        if not file.lower().endswith(".txt"):
+            continue
+
+
+        path = os.path.join(
+            txt_folder,
+            file
+        )
+
 
         try:
 
@@ -41,22 +54,36 @@ for file in os.listdir(txt_folder):
             ]
 
 
+            # ------------------------------------------------
             # Clean strings
+            # ------------------------------------------------
+
             df["Wavelength"] = (
                 df["Wavelength"]
                 .str.strip()
-                .str.replace(",", ".", regex=False)
+                .str.replace(
+                    ",",
+                    ".",
+                    regex=False
+                )
             )
 
 
             df["Abs"] = (
                 df["Abs"]
                 .str.strip()
-                .str.replace(",", ".", regex=False)
+                .str.replace(
+                    ",",
+                    ".",
+                    regex=False
+                )
             )
 
 
+            # ------------------------------------------------
             # Convert to numbers
+            # ------------------------------------------------
+
             df["Wavelength"] = pd.to_numeric(
                 df["Wavelength"],
                 errors="coerce"
@@ -69,14 +96,39 @@ for file in os.listdir(txt_folder):
             )
 
 
+            # ------------------------------------------------
             # Remove empty rows
+            # ------------------------------------------------
+
             df = df.dropna()
 
 
+            # ------------------------------------------------
+            # Sort by wavelength
+            # ------------------------------------------------
+
+            df = df.sort_values(
+                "Wavelength"
+            ).reset_index(
+                drop=True
+            )
+
+
+            # ------------------------------------------------
+            # Use folder + filename as unique key
+            # ------------------------------------------------
+            folder_name = os.path.basename(
+                txt_folder
+            )
+
+            key = f"{folder_name}/{file}"
+
             txt_spectra[file] = df
 
-
-            print("Loaded:", file)
+            print(
+                "Loaded:",
+                file
+             )
 
 
         except Exception as e:
@@ -127,53 +179,6 @@ plt.show()
 
 
 
-# ==========================
-# BASELINE SUBTRACTION
-# ==========================
-
-
-baseline_name = "20260810_Baseline_DOCD2O1pc.txt"
-
-
-baseline = txt_spectra[baseline_name]
-
-
-corrected_spectra = {}
-
-
-
-for name, df in txt_spectra.items():
-
-
-    # Skip baseline
-    if name == baseline_name:
-        continue
-
-
-    corrected = pd.DataFrame()
-
-
-    corrected["Wavelength"] = df["Wavelength"]
-
-
-    corrected["Abs"] = (
-        df["Abs"].values
-        -
-        baseline["Abs"].values
-    )
-
-
-    corrected_spectra[name] = corrected
-
-
-
-print("\nCorrected spectra:")
-
-for name in corrected_spectra:
-    print(name)
-
-
-
 
 # ==========================
 # NORMALIZATION FUNCTION
@@ -193,21 +198,17 @@ def NormalizeSpectra(
     mode:
         M -> normalize by maximum
         I -> normalize by integral
+        V -> normalize by valley (minimum)
     """
-
 
     normalized = {}
 
-
     for name, df in spectra_input.items():
-
 
         df_norm = df.copy()
 
-
         X = df_norm["Wavelength"].values
         Y = df_norm["Abs"].values
-
 
         mask = (
             (X >= xmin)
@@ -215,10 +216,8 @@ def NormalizeSpectra(
             (X <= xmax)
         )
 
-
         X_window = X[mask]
         Y_window = Y[mask]
-
 
         if len(X_window) == 0:
 
@@ -229,14 +228,11 @@ def NormalizeSpectra(
 
             continue
 
-
-
         if mode.upper() == "M":
 
             factor = np.max(
                 Y_window
             )
-
 
         elif mode.upper() == "I":
 
@@ -245,14 +241,17 @@ def NormalizeSpectra(
                 X_window
             )
 
+        elif mode.upper() == "V":
+
+            factor = np.min(
+                Y_window
+            )
 
         else:
 
             raise ValueError(
-                "Mode must be 'M' or 'I'"
+                "Mode must be 'M', 'I', or 'V'"
             )
-
-
 
         if factor != 0:
 
@@ -260,13 +259,9 @@ def NormalizeSpectra(
                 Y / factor
             )
 
-
         normalized[name] = df_norm
 
-
-
     return normalized
-
 
 
 
@@ -377,13 +372,74 @@ spectra_to_plot = [
     #"20260728_F003_TFE@P2_DOCD2O_d3.txt",
     #"20260728_F004_6FIPA@P2_DOCD2O_d1.txt",
     
-"20260810_F005LP_6FBz@P2_DGUdial.txt",
-"20260810_F006WA_phDADQ@P2_DGUdial.txt",
-"20260810_F007WA_1BrC18@P2_DGUdial.txt",
-"20260810_P2_DGUdial.txt", 
+#"20260810_F005LP_6FBz@P2_DGUdial.txt",
+#"20260810_F006WA_phDADQ@P2_DGUdial.txt",
+#"20260810_F007WA_1BrC18@P2_DGUdial.txt",
+#"20260810_P2_DGUdial.txt", 
+
+"20260817_F005LP_6FBz@P2_DGUdial.txt",
+"20260817_F006WA_phDADQ@P2_DGUdial.txt",
+"20260817_F007WA_1BrC18@P2_DGUdial.txt",
+"20260817_P2_DGUdial.txt", 
 
 ]
 
+
+
+# ==========================
+# BASELINE SUBTRACTION
+# ==========================
+
+
+baseline_name = "20260817_Baseline_DOCD2O1pc.txt"
+
+
+baseline = txt_spectra[baseline_name]
+
+
+corrected_spectra = {}
+
+
+
+for name in spectra_to_plot:
+
+
+    # Check that selected spectrum exists
+    if name not in txt_spectra:
+
+        print(
+            f"WARNING: {name} not found in txt_spectra"
+        )
+
+        continue
+
+
+    df = txt_spectra[name]
+
+
+    corrected = pd.DataFrame()
+
+
+    corrected["Wavelength"] = (
+        df["Wavelength"]
+    )
+
+
+    corrected["Abs"] = (
+        df["Abs"].values
+        -
+        baseline["Abs"].values
+    )
+
+
+    corrected_spectra[name] = corrected
+
+
+print("\nCorrected spectra:")
+
+for name in corrected_spectra:
+
+    print(name)
 
 
 
@@ -392,7 +448,7 @@ spectra_to_plot = [
 # ==========================
 
 normalized_spectra = corrected_spectra
-normalized_spectra = NormalizeSpectra(corrected_spectra,xmin=600,xmax=700,mode="M")
+normalized_spectra = NormalizeSpectra(corrected_spectra,xmin=1200,xmax=1350,mode="V")
 
 
 # ==========================

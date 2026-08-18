@@ -18,6 +18,7 @@ import numpy as np
 
 #txt_folder = r"H:\FUBerlin\Measurements\UVvisNIR\CristianB\All"
 #txt_folder = r"H:\FUBerlin\Measurements\UVvisNIR\CristianB\20260810_DGUdial_P2_F005_F006_F007"
+txt_folder = r"H:\FUBerlin\Measurements\UVvisNIR\CristianB\20260817_DGUdial_P2_F005_F006_F007_ProperResolution"
 
 # === LOAD ALL TXT FILES ===
 
