@@ -6,7 +6,7 @@ from tkinter import Tk, filedialog
 # =====================
 # PARAMETERS
 # =====================
-offset = 0.0  # vertical offset between spectra
+offset = 1.0  # vertical offset between spectra
 normalize = True  # set False if you don't want normalization
 
 # =====================
