@@ -239,14 +239,14 @@ for name in sorted(spectra_dict.keys()):
 selected_names = [
 
 
-    #"20260731_P2_DGU_B_d1" ,
+    "20260731_P2_DGU_B_d1" ,
     #"20260731_F005LP_6FBz@P2_DGU_B_d1" ,
-    #"20260731_F006WA_phDADQ@P2_DGU_B_d1" ,
+    "20260731_F006WA_phDADQ@P2_DGU_B_d1" ,
     #"20260731_F007WA_1BrC18@P2_DGU_B_d1" ,
     
-    #"20260731_P2_DGU_C_d1" ,
+    "20260731_P2_DGU_C_d1" ,
     #"20260731_F005LP_6FBz@P2_DGU_C_d1" ,
-    #"20260731_F006WA_phDADQ@P2_DGU_C_d1" ,
+    "20260731_F006WA_phDADQ@P2_DGU_C_d1" ,
     #"20260731_F007WA_1BrC18@P2_DGU_C_d1" ,
 
     #"20260731_P2_DGU_D_d1" ,
@@ -254,9 +254,9 @@ selected_names = [
     #"20260731_F006WA_phDADQ@P2_DGU_D_d1" ,
     #"20260731_F007WA_1BrC18@P2_DGU_D_d1" ,
 
-    #"20260731_P2_DGU_D_d4" ,
+    "20260731_P2_DGU_D_d4" ,
     #"20260731_F005LP_6FBz@P2_DGU_D_d4" , 
-    #"20260731_F006WA_phDADQ@P2_DGU_D_d4" , 
+    "20260731_F006WA_phDADQ@P2_DGU_D_d4" , 
     #"20260731_F007WA_1BrC18@P2_DGU_D_d4" ,
 
 
@@ -271,11 +271,13 @@ selected_names = [
 
 #    "20260731_F006WA_phDADQ@P2_DGU_B_d1" ,
 #    "20260803_F006WA_phDADQ@P2_DGUdial" ,
+
+ 
     
-"20260804_F005LP_6FBz@P2_DGUdial" ,
-"20260804_F006WA_phDADQ@P2_DGUdial" ,
-"20260804_F007WA_1BrC18@P2_DGUdial" ,
-"20260804_P2_DGUdial" ,
+#"20260804_F005LP_6FBz@P2_DGUdial" ,
+#"20260804_F006WA_phDADQ@P2_DGUdial" ,
+#"20260804_F007WA_1BrC18@P2_DGUdial" ,
+#"20260804_P2_DGUdial" ,
 ]
 
 
@@ -337,7 +339,7 @@ selected_spectra = [spectra_dict[name] for name in selected_names]
 selected_spectra = TrimSpectra(selected_spectra, 200, 1100)
 selected_spectra = Normalize(selected_spectra, 600, 800, mode="M")
 #selected_spectra = Normalize(selected_spectra, 450, 475, mode="M")
-PlotSpectra(selected_spectra, 'WE', offset_step=0.0)
+PlotSpectra(selected_spectra, 'WE', offset_step=0.1)
 
 
 
