@@ -254,7 +254,7 @@ selected_names = [
 
 # === OPTIONAL: simple plot ===
     
-if(0==1):
+if(1==1):
     plt.figure(figsize=(5,5))
 
     offset = 0.0
