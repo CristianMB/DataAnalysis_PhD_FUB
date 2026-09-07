@@ -68,6 +68,7 @@ samples = [Sample(name, wavelength, spectra_data[name]) for name in scan_names]
 
 # === PLOT ===
 plt.figure(figsize=(10,6))
+
 for idx, sample in enumerate(samples):
     y_offset = [val + idx*offset for val in sample.y]
     plt.plot(sample.x, y_offset, label=sample.n)

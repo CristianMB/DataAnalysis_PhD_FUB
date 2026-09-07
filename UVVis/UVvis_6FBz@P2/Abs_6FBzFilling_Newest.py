@@ -15,13 +15,13 @@ from spectra.io import load_absorption_csv  # now Python can find it
 
 data_folders = [
     r'H:\FUBerlin\Measurements\UVVis\CristianB\20260226_Abs_CNTDispersions_TS',
+    r'H:\FUBerlin\Measurements\UVVis\CristianB\20260330_CNT_CF_PLE_P2_NoPo_CoMoCat_R1',
     r'H:\FUBerlin\Measurements\UVVis\CristianB\20260430_F005_6FBz_AP_1hCF',
     r'H:\FUBerlin\Measurements\UVVis\CristianB\20260513_F005_6FBz_AP_1hCF_Refs',
     r'H:\FUBerlin\Measurements\UVVis\CristianB\20260529_F005_6FBz@P2_and_P2_References',
-    r'H:\FUBerlin\Measurements\UVVis\CristianB\20260330_CNT_CF_PLE_P2_NoPo_CoMoCat_R1',
+    r'H:\FUBerlin\Measurements\UVVis\CristianB\20260625_F001_FBz_F002_6FBz_Washing',
     r'H:\FUBerlin\Measurements\UVVis\CristianB\20260701_P2Samples_1pcDOCD2O_P2_F005_F006',
     r'H:\FUBerlin\Measurements\UVVis\CristianB\20260701_PLE_Samples_F005_F006',
-    r'H:\FUBerlin\Measurements\UVVis\CristianB\20260625_F001_FBz_F002_6FBz_Washing',
     
 
 ]
