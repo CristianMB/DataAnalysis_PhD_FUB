@@ -3,6 +3,14 @@ import matplotlib.pyplot as plt
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 
+
+
+# ============================================================
+# FIXED DATA FOLDER
+# ============================================================
+
+csv_folder = r"H:\FUBerlin\Measurements\UVvis"
+
 # === PARAMETERS ===
 offset = 0.0  # vertical offset between spectra
 
@@ -15,7 +23,7 @@ class Sample:
 
 # === FILE SELECTION DIALOG ===
 Tk().withdraw()  # hide main tkinter window
-filename = askopenfilename(title="Select CSV file", filetypes=[("CSV files","*.csv")])
+filename = askopenfilename(initialdir=csv_folder,title="Select CSV file", filetypes=[("CSV files","*.csv")])
 if not filename:
     print("No file selected. Exiting.")
     exit()

@@ -8,6 +8,7 @@ from tkinter import Tk, filedialog
 # =====================
 offset = 1.0  # vertical offset between spectra
 normalize = True  # set False if you don't want normalization
+csv_folder = r"H:\FUBerlin\Measurements\Raman Xplora"
 
 # =====================
 # FILE CLASS
@@ -22,7 +23,7 @@ class RamanSpectrum:
 # SELECT FOLDER
 # =====================
 Tk().withdraw()
-folder = filedialog.askdirectory(title="Select Raman folder")
+folder = filedialog.askdirectory(initialdir=csv_folder,title="Select Raman folder")
 
 if not folder:
     print("No folder selected. Exiting.")
