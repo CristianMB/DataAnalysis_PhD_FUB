@@ -238,7 +238,7 @@ for name in sorted(spectra_dict.keys()):
 # === SELECT ====
 
 selected_names = [
-    'phDADQ_DMF_LowCon_d20',
+    '20260513_phDADQ_DMF_LowCon_d20',
     #'phDADQ_DMF_Sat_d20',
     #'phDADQ_DMF_Sat_d30',
     
@@ -246,8 +246,8 @@ selected_names = [
     #'F006_R1_d20',
     #'F006_R2_d20',
 
-    'F006WA_phDADQ@P2_CF_260605_darker_d2',
-    'P2-SWCNT_CF_usedForPLE'
+    '20260618_F006WA_phDADQ@P2_CF_260605_darker_d2',
+    '20260618_P2-SWCNT_CF_usedForPLE'
 ]
 
 
